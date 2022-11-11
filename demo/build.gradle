@@ -1,7 +1,36 @@
-//add everything here
+plugins {
+    // id for library
+    id 'java'
+    // id for maven to publish jar to local repository
+    id 'maven-publish'
+}
+
+group 'com.epam.demo'
+version '1.0-SNAPSHOT'
+
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(15)
+    }
+}
+
+repositories {
+// provide repository, where required dependencies are located
+    mavenCentral()
+}
+
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation project(":utils")
+}
+
+
 
 test {
     useJUnitPlatform()
 }
 
 compileJava {}.dependsOn(':utils:publishToMavenLocal')
+
